@@ -1,24 +1,23 @@
+// Create button
+const getSumBtn = document.createElement("button");
+getSumBtn.append("Get Total Price");
+document.body.appendChild(getSumBtn);
+
+// Function to calculate total
 const getSum = () => {
   const prices = document.querySelectorAll(".prices");
   let total = 0;
 
-  // Calculate total
   prices.forEach((price) => {
     total += Number(price.textContent);
   });
 
-  // Create new row
-  const table = document.querySelector("table");
-  const newRow = document.createElement("tr");
-
-  // Create cell
-  const newCell = document.createElement("td");
-  newCell.colSpan = 2; // adjust if more columns
-  newCell.textContent = total;
-
-  newRow.appendChild(newCell);
-
-  // Append row to table
-  table.appendChild(newRow);
+  // Display result in #ans (required for tests)
+  const ans = document.getElementById("ans");
+  if (ans) {
+    ans.textContent = total;
+  }
 };
 
+// Add event listener
+getSumBtn.addEventListener("click", getSum);
