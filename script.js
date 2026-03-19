@@ -7,9 +7,13 @@ const getSum = () => {
   let total = 0;
 
   prices.forEach((price) => {
-    // Extract only numbers (important fix)
-    const value = price.textContent.replace(/[^0-9]/g, "");
-    total += Number(value);
+    let text = price.textContent.trim();
+
+    // Extract LAST number from string
+    let matches = text.match(/\d+/g);
+    let value = matches ? Number(matches[matches.length - 1]) : 0;
+
+    total += value;
   });
 
   document.getElementById("ans").textContent = total;
