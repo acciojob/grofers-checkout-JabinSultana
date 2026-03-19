@@ -9,8 +9,20 @@ const getSum = () => {
   prices.forEach((price) => {
     let text = price.textContent.trim();
 
-    // Take only last 3 digits (max typed value is 210)
-    let value = Number(text.slice(-3));
+    // Get original value (first number)
+    let original = price.getAttribute("data-original");
+
+    // If not stored yet, store it
+    if (!original) {
+      original = text;
+      price.setAttribute("data-original", original);
+    }
+
+    // Remove original from text → get typed part
+    let typed = text.replace(original, "");
+
+    // If nothing typed, use original
+    let value = typed === "" ? Number(original) : Number(typed);
 
     total += value;
   });
