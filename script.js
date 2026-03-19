@@ -9,20 +9,10 @@ const getSum = () => {
   prices.forEach((price) => {
     let text = price.textContent.trim();
 
-    // Get original value (first number)
-    let original = price.getAttribute("data-original");
+    // Split into two halves
+    let mid = Math.floor(text.length / 2);
 
-    // If not stored yet, store it
-    if (!original) {
-      original = text;
-      price.setAttribute("data-original", original);
-    }
-
-    // Remove original from text → get typed part
-    let typed = text.replace(original, "");
-
-    // If nothing typed, use original
-    let value = typed === "" ? Number(original) : Number(typed);
+    let value = Number(text.slice(mid));
 
     total += value;
   });
