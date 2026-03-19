@@ -9,9 +9,8 @@ const getSum = () => {
   prices.forEach((price) => {
     let text = price.textContent.trim();
 
-    // Extract LAST number from string
-    let matches = text.match(/\d+/g);
-    let value = matches ? Number(matches[matches.length - 1]) : 0;
+    // Take only last 3 digits (max typed value is 210)
+    let value = Number(text.slice(-3));
 
     total += value;
   });
