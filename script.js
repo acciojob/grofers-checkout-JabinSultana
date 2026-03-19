@@ -1,23 +1,18 @@
-// Create button
 const getSumBtn = document.createElement("button");
 getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
-// Function to calculate total
 const getSum = () => {
   const prices = document.querySelectorAll(".prices");
   let total = 0;
 
   prices.forEach((price) => {
-    total += Number(price.textContent);
+    // Extract only numbers (important fix)
+    const value = price.textContent.replace(/[^0-9]/g, "");
+    total += Number(value);
   });
 
-  // Display result in #ans (required for tests)
-  const ans = document.getElementById("ans");
-  if (ans) {
-    ans.textContent = total;
-  }
+  document.getElementById("ans").textContent = total;
 };
 
-// Add event listener
 getSumBtn.addEventListener("click", getSum);
